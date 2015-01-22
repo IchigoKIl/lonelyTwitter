@@ -58,6 +58,20 @@ public class LonelyTwitterActivity extends Activity {
 
 	@Override
 	protected void onStart() {
+<<<<<<< HEAD
+=======
+		
+		User u = new Author();
+		
+		ArrayList<User> array = new ArrayList<User>();
+		
+		try {
+			u.setUsername("joe");
+		} catch (IOException e) {
+			
+		}
+		
+>>>>>>> bad6bfacd585626122230d67ceba89f55e2cb059
 		super.onStart();
 		
 		// Lab 2 stuff
