@@ -2,6 +2,7 @@ package ca.ualberta.cs.lonelytwitter.test;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity;
 import ca.ualberta.cs.lonelytwitter.NormalTweetModel;
+import ca.ualberta.cs.lonelytwitter.R;
 
 /*
  * generate this class with new.. JUnit Test Case
@@ -21,6 +23,7 @@ public class LonelyTwitterActivityUITest extends
 	Instrumentation instrumentation;
 	Activity activity;
 	EditText textInput;
+	ListView listView;
 	
 	public LonelyTwitterActivityUITest() {
 		super(LonelyTwitterActivity.class);
@@ -32,6 +35,29 @@ public class LonelyTwitterActivityUITest extends
 		activity = getActivity();
 
 		textInput = ((EditText) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.body));
+		listView = (ListView) activity.findViewById(R.id.oldTweetsList);
+	}
+	
+	public void testSetText() {
+		instrumentation.runOnMainSync(new Runnable() {
+
+			@Override
+			public void run() {
+				String text = "tweet";
+				textInput.setText(text);
+			}
+			
+		});
+		
+		instrumentation.waitForIdleSync();
+		
+		assertEquals("Correct text?", "tweet", 
+				textInput.getText().toString());
+	}
+	
+	public void testAddTweet() {
+		String text = "Hello world!";
+		//makeTweet(text);
 	}
 	
 	/*
